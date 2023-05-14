@@ -21,15 +21,15 @@ class Plate:
         self.hasFood = False
         self.dirty()
 
-    def addFood(self):
+    def add_food(self):
         self.hasFood = True
 
     @staticmethod
-    def getInstance():
+    def get_instance():
         if Plate.instance is None:
             Plate.instance = Plate(10, "ceramic", "blue")
         return Plate.instance
 
 
-plate = Plate.getInstance()
+plate = Plate.get_instance()
 print(plate)
