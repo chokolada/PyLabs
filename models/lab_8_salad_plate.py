@@ -1,4 +1,4 @@
-from models.Lab_8_Plate import Plate
+from models.lab_8_plate import Plate
 
 
 class SaladPlate(Plate):
@@ -6,6 +6,7 @@ class SaladPlate(Plate):
         super().__init__(diameter, material, color)
         self.shape = shape
         self.dishwasher_safe = dishwasher_safe
+        self.pattern = {"head", "plate", "fork"}
 
     def get_max_food_weight(self):
         volume = (3.14 * (self.diameter / 2) ** 2 * self.diameter) / 3

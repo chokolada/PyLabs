@@ -1,6 +1,6 @@
 import math
 
-from models.Lab_8_Plate import Plate
+from models.lab_8_plate import Plate
 
 
 class DessertPlate(Plate):
@@ -8,6 +8,7 @@ class DessertPlate(Plate):
         super().__init__(diameter, material, color)
         self.topping = topping
         self.dessert_type = dessert_type
+        self.pattern = {"square", "ball", "birb"}
 
     def get_max_food_weight(self):
         volume = math.pi * self.diameter/2 * 1.8
