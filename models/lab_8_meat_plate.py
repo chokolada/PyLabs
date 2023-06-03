@@ -1,4 +1,4 @@
-from models.Lab_8_Plate import Plate
+from models.lab_8_plate import Plate
 
 
 class MeatPlate(Plate):
@@ -6,6 +6,7 @@ class MeatPlate(Plate):
         super().__init__(diameter, material, color)
         self.height = height
         self.meat_type = meat_type
+        self.pattern = {"spike", "flower", "heart"}
 
     def get_max_food_weight(self):
         volume = self.diameter * self.diameter * self.height
