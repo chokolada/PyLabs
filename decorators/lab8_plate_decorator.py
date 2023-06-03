@@ -1,4 +1,5 @@
 import time
+import logging
 
 
 def measure_execution_time(func):
@@ -13,14 +14,26 @@ def measure_execution_time(func):
     return wrapper
 
 
-def print_iterable_length(func):
+def convert_iterator(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        if hasattr(result, "__iter__"):
-            length = sum(1 for _ in result)
-        else:
-            length = 1
-        print(f"The length of the iterable object is: {length}")
-        return result
+        return tuple(result)
 
     return wrapper
+
+
+def logged(exception, mode):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except exception as e:
+                if mode == "console":
+                    logging.basicConfig(level=logging.INFO)
+                elif mode == "file":
+                    logging.basicConfig(filename='error.log', filemode='a', level=logging.INFO)
+                logging.exception(e)
+
+        return wrapper
+
+    return decorator

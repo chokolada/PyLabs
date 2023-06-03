@@ -1,7 +1,6 @@
 from lab_8_plate_manager import PlateManager
 
 
-
 class SetManager:
     def __init__(self, manager: PlateManager):
         self.manager = manager

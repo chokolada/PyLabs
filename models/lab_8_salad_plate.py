@@ -1,5 +1,8 @@
 from models.lab_8_plate import Plate
 
+class SaladPlateException(Exception):
+    pass
+
 
 class SaladPlate(Plate):
     def __init__(self, diameter, material, color, shape, dishwasher_safe):
@@ -10,7 +13,11 @@ class SaladPlate(Plate):
 
     def get_max_food_weight(self):
         volume = (3.14 * (self.diameter / 2) ** 2 * self.diameter) / 3
+        if volume > 10000:
+            raise SaladPlateException("Why is your Salad plate sooo big?")
         return volume
 
     def __str__(self):
         return f"SaladPlate: diameter={self.diameter}, material={self.material}, color={self.color}, shape={self.shape}, dishwasher_safe={self.dishwasher_safe}"
+
+

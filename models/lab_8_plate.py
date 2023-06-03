@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
 
 
+class PlateException(Exception):
+    pass
+
+
 class Plate(ABC):
     def __init__(self, diameter, material, color):
         self.diameter = diameter
@@ -15,6 +19,9 @@ class Plate(ABC):
     def dictionary_list(self, value_type=None):
         print('dictionary_list')
         if value_type is not None:
+            if not isinstance(value_type, type):
+                raise PlateException("Invalid value_type provided. Expected a type.")
+
             person_dict = {key: value for key, value in self.__dict__.items() if isinstance(value, value_type)}
             print(person_dict)
 
