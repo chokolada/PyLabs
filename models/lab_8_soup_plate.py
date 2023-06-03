@@ -1,6 +1,10 @@
 from models.lab_8_plate import Plate
 
 
+class SoupPlateException(Exception):
+    pass
+
+
 class SoupPlate(Plate):
     def __init__(self, diameter, material, color, depth, soup_type):
         super().__init__(diameter, material, color)
@@ -13,3 +17,7 @@ class SoupPlate(Plate):
 
     def __str__(self):
         return f"SoupPlate: diameter={self.diameter}, material={self.material}, color={self.color}, depth={self.depth}, soup_type={self.soup_type}"
+
+    def funny_exception(self):
+        if not isinstance(self, SoupPlate):
+            raise SoupPlateException("How is that even possible!?")

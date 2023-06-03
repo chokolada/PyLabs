@@ -1,11 +1,11 @@
 from typing import List
-from decorators.lab8_plate_decorator import measure_execution_time, print_iterable_length
 
 from models.lab_8_plate import Plate
-from models.lab_8_soup_plate import SoupPlate
 from models.lab_8_salad_plate import SaladPlate
-from models.lab_8_dessert_plate import DessertPlate
-from models.lab_8_meat_plate import MeatPlate
+
+
+class PlateManagerException(Exception):
+    pass
 
 
 class PlateManager:
@@ -16,7 +16,7 @@ class PlateManager:
         return len(self.plates)
 
     def __getitem__(self, item):
-        return self.plates.append(item)
+        return self.plates[item]
 
     def __iter__(self):
         return iter(self.plates)
@@ -40,6 +40,8 @@ class PlateManager:
         print("All and Any:")
         all_satisfy = all(plate.diameter > value for plate in self.plates)
         any_satisfy = any(plate.diameter > value for plate in self.plates)
+        if any_satisfy == False and all_satisfy == False:
+            raise PlateManagerException("All of your checks are false try another value")
         return {"all": all_satisfy, "any": any_satisfy}
 
     def add_plate(self, plate):

@@ -3,8 +3,10 @@ from models.lab_8_meat_plate import MeatPlate
 from models.lab_8_salad_plate import SaladPlate
 from models.lab_8_soup_plate import SoupPlate
 from models.lab_8_dessert_plate import DessertPlate
+from decorators.lab8_plate_decorator import logged
 
 
+@logged(Exception, mode="console")
 def main():
     plate_manager = PlateManager()
 
@@ -32,6 +34,7 @@ def main():
     print("\nPlates by form:")
     for plate in plates_by_form:
         print(plate)
+
 
 # Call the main function
 main()
